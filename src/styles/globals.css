@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h2 {
+    @apply py-4 text-gray-800 text-4xl font-black;
+  }
+
+  .button {
+    @apply custom-focus px-8 py-2 text-green-400 hover:text-white focus:text-white font-bold focus:bg-green-400 hover:bg-green-400 bg-white border-2 border-green-400 rounded-full !important;
+  }
+
+  .button-inverse {
+    @apply custom-focus px-8 py-2 hover:text-green-400 focus:text-green-400 text-white font-bold bg-green-400 focus:bg-white hover:bg-white border-2 focus:border-green-400 hover:border-green-400 border-white rounded-full !important;
+  }
+
+  .custom-focus {
+    @apply focus:outline-none focus:border-green-400 focus:ring-2 focus:ring-offset-2 focus:ring-green-400;
+  }
+
+  .heading {
+    @apply text-gray-700 text-lg font-semibold;
+  }
+
+  .highlight {
+    @apply ml-1 p-2 font-mono bg-gray-100 rounded-lg;
+  }
+}
+
+.sbui-input {
+  @apply custom-focus rounded-full focus:shadow-none !important;
+}
+
+.sbui-checkbox {
+  @apply custom-focus rounded-full focus:shadow-none !important;
+}
+
+.sbui-btn-primary {
+  @apply custom-focus button-inverse rounded-full !important;
+}
+
+.sbui-typography-link {
+  @apply custom-focus text-green-400 font-bold rounded-full !important;
+}
