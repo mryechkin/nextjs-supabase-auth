@@ -25,7 +25,7 @@ export default function Home() {
           <Link href="/profile">
             <a className="button">Go to Profile</a>
           </Link>
-          <button type="button" className="button-inverse" onClick={signOut}>
+          <button type="button" className="button" onClick={signOut}>
             Sign Out
           </button>
         </>
