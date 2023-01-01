@@ -22,8 +22,8 @@ export default function Home() {
         <>
           <h2>Welcome!</h2>
           <code className="highlight">{user.role}</code>
-          <Link href="/profile">
-            <a className="button">Go to Profile</a>
+          <Link className="button" href="/profile">
+            Go to Profile
           </Link>
           <button type="button" className="button" onClick={signOut}>
             Sign Out

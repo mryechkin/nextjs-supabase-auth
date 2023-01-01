@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
 export const EVENTS = {
   PASSWORD_RECOVERY: 'PASSWORD_RECOVERY',
@@ -55,19 +55,19 @@ export const AuthProvider = ({ supabase, ...props }) => {
     return () => {
       authListener?.unsubscribe();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return (
-    <AuthContext.Provider
-      value={{
-        session,
-        user,
-        view,
-        signOut: () => supabase.auth.signOut(),
-      }}
-      {...props}
-    />
-  );
+  const value = useMemo(() => {
+    return {
+      session,
+      user,
+      view,
+      signOut: () => supabase.auth.signOut(),
+    };
+  }, [session, user, view, supabase]);
+
+  return <AuthContext.Provider value={value} {...props} />;
 };
 
 export const useAuth = () => {

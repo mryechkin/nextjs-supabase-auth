@@ -11,6 +11,8 @@
   "rules": {
     "no-shadow": "warn",
     "no-unused-vars": "warn",
-    "react-hooks/exhaustive-deps": "warn"
+    "react-hooks/exhaustive-deps": "warn",
+    "react/function-component-definition": "off",
+    "react/react-in-jsx-scope": "off"
   }
 }
