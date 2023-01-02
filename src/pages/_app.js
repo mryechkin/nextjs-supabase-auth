@@ -1,11 +1,10 @@
-import '@/styles/globals.css';
+import { AuthProvider } from 'src/components/AuthProvider';
 
-import { AuthProvider } from '@/lib/auth';
-import { supabase } from '@/lib/client';
+import 'src/styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <AuthProvider supabase={supabase}>
+    <AuthProvider>
       <Component {...pageProps} />
     </AuthProvider>
   );

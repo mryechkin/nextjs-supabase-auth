@@ -1,18 +1,18 @@
 {
   "extends": ["acme"],
-  "settings": {
-    "import/resolver": {
-      "alias": {
-        "map": [["@", "./src"]],
-        "extensions": [".js"]
-      }
-    }
-  },
   "rules": {
     "no-shadow": "warn",
     "no-unused-vars": "warn",
+    "jsx-a11y/label-has-associated-control": [
+      "error",
+      {
+        "controlComponents": ["Field"],
+        "depth": 3
+      }
+    ],
     "react-hooks/exhaustive-deps": "warn",
     "react/function-component-definition": "off",
+    "react/jsx-no-bind": "off",
     "react/react-in-jsx-scope": "off"
   }
 }

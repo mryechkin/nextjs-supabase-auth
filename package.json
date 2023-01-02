@@ -11,13 +11,17 @@
     "lint:fix": "eslint --ignore-path .gitignore --fix ."
   },
   "dependencies": {
-    "@supabase/supabase-js": "^1.35.7",
-    "@supabase/ui": "^0.36.5",
+    "@supabase/auth-helpers-nextjs": "^0.5.2",
+    "@supabase/supabase-js": "^2.2.3",
+    "classnames": "^2.3.2",
+    "formik": "^2.2.9",
     "next": "^13.1.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.3",
     "autoprefixer": "^10.4.13",
     "eslint": "^8.31.0",
     "eslint-config-acme": "^2.0.0",

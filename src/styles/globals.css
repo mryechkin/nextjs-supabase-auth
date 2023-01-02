@@ -4,42 +4,50 @@
 
 @layer base {
   h2 {
-    @apply py-4 text-gray-800 text-4xl font-black;
+    @apply py-4 text-4xl font-black text-gray-800;
   }
 
   .button {
-    @apply custom-focus px-8 py-2 text-green-400 hover:text-white focus:text-white font-bold focus:bg-green-400 hover:bg-green-400 bg-white border-2 border-green-400 rounded-full !important;
+    @apply custom-focus rounded-full border-2 border-green-400 bg-white px-8 py-2 font-bold text-green-400 hover:bg-green-400 hover:text-white focus:bg-green-400 focus:text-white;
   }
 
   .button-inverse {
-    @apply custom-focus px-8 py-2 hover:text-green-400 focus:text-green-400 text-white font-bold bg-green-400 focus:bg-white hover:bg-white border-2 focus:border-green-400 hover:border-green-400 border-white rounded-full !important;
+    @apply custom-focus rounded-full border-2 border-white bg-green-400 px-8 py-2 font-bold text-white hover:border-green-400 hover:bg-white hover:text-green-400 focus:border-green-400 focus:bg-white focus:text-green-400;
+  }
+
+  .card {
+    @apply column min-w-[24rem] items-center bg-white py-8 px-4 shadow sm:rounded-2xl sm:px-10;
+  }
+
+  .column {
+    @apply flex flex-col items-start justify-center gap-4;
   }
 
   .custom-focus {
-    @apply focus:outline-none focus:border-green-400 focus:ring-2 focus:ring-offset-2 focus:ring-green-400;
+    @apply focus:border-green-400 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2;
   }
 
   .heading {
-    @apply text-gray-700 text-lg font-semibold;
+    @apply text-lg font-semibold text-gray-700;
   }
 
   .highlight {
-    @apply ml-1 p-2 font-mono bg-gray-100 rounded-lg;
+    @apply ml-1 rounded-lg bg-gray-100 p-2 font-mono;
   }
-}
 
-.sbui-input {
-  @apply custom-focus rounded-full focus:shadow-none !important;
-}
+  .error {
+    @apply w-full text-center text-red-600;
+  }
 
-.sbui-checkbox {
-  @apply custom-focus rounded-full focus:shadow-none !important;
-}
+  .input {
+    @apply custom-focus w-full rounded-xl border border-slate-300 focus:shadow-none;
+  }
 
-.sbui-btn-primary {
-  @apply custom-focus button-inverse rounded-full !important;
-}
+  .link {
+    @apply custom-focus rounded-md font-semibold text-green-400;
+  }
 
-.sbui-typography-link {
-  @apply custom-focus text-green-400 font-bold rounded-full !important;
+  .row {
+    @apply flex flex-row items-center justify-start gap-1;
+  }
 }

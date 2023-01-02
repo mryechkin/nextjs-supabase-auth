@@ -1,5 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
+import supabase from 'src/lib/supabase-browser';
+
 export const EVENTS = {
   PASSWORD_RECOVERY: 'PASSWORD_RECOVERY',
   SIGNED_OUT: 'SIGNED_OUT',
@@ -16,15 +18,20 @@ export const VIEWS = {
 
 export const AuthContext = createContext();
 
-export const AuthProvider = ({ supabase, ...props }) => {
+export const AuthProvider = (props) => {
   const [session, setSession] = useState(null);
   const [user, setUser] = useState(null);
   const [view, setView] = useState(VIEWS.SIGN_IN);
 
   useEffect(() => {
-    const activeSession = supabase.auth.session();
-    setSession(activeSession);
-    setUser(activeSession?.user ?? null);
+    async function getActiveSession() {
+      const {
+        data: { session: activeSession },
+      } = await supabase.auth.getSession();
+      setSession(activeSession);
+      setUser(activeSession?.user ?? null);
+    }
+    getActiveSession();
 
     const { data: authListener } = supabase.auth.onAuthStateChange(
       (event, currentSession) => {
@@ -41,14 +48,6 @@ export const AuthProvider = ({ supabase, ...props }) => {
             break;
           default:
         }
-
-        // This is needed to set the cookie for SSR
-        fetch('/api/auth', {
-          method: 'POST',
-          headers: new Headers({ 'Content-Type': 'application/json' }),
-          credentials: 'same-origin',
-          body: JSON.stringify({ event, session: currentSession }),
-        }).then((res) => res.json());
       }
     );
 
@@ -65,7 +64,7 @@ export const AuthProvider = ({ supabase, ...props }) => {
       view,
       signOut: () => supabase.auth.signOut(),
     };
-  }, [session, user, view, supabase]);
+  }, [session, user, view]);
 
   return <AuthContext.Provider value={value} {...props} />;
 };

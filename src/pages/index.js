@@ -1,9 +1,8 @@
-import { Auth } from '@supabase/ui';
 import Link from 'next/link';
 
-import Layout from '@/components/Layout';
-import { useAuth, VIEWS } from '@/lib/auth';
-import { supabase } from '@/lib/client';
+import Auth from 'src/components/Auth';
+import { useAuth, VIEWS } from 'src/components/AuthProvider';
+import Layout from 'src/components/Layout';
 
 export default function Home() {
   const { user, view, signOut } = useAuth();
@@ -11,7 +10,7 @@ export default function Home() {
   if (view === VIEWS.UPDATE_PASSWORD) {
     return (
       <Layout>
-        <Auth.UpdatePassword supabaseClient={supabase} />
+        <Auth view={view} />
       </Layout>
     );
   }
@@ -30,7 +29,7 @@ export default function Home() {
           </button>
         </>
       )}
-      {!user && <Auth view={view} supabaseClient={supabase} />}
+      {!user && <Auth view={view} />}
     </Layout>
   );
 }

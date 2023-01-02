@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
-import Layout from '@/components/Layout';
-import { supabase } from '@/lib/client';
+import Layout from 'src/components/Layout';
+import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
 
 export default function Profile({ user }) {
   return (
@@ -9,7 +9,7 @@ export default function Profile({ user }) {
       <h2>User Profile</h2>
       <code className="highlight">{user.email}</code>
       <div className="heading">Last Signed In:</div>
-      <code className="highlight">{new Date(user.last_sign_in_at).toLocaleString()}</code>
+      <code className="highlight">{new Date(user.last_sign_in_at).toUTCString()}</code>
       <Link className="button" href="/">
         Go Home
       </Link>
@@ -17,8 +17,15 @@ export default function Profile({ user }) {
   );
 }
 
-export async function getServerSideProps({ req }) {
-  const { user } = await supabase.auth.api.getUserByCookie(req);
+export async function getServerSideProps({ req, res }) {
+  const supabase = createServerSupabaseClient({
+    req,
+    res,
+  });
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
   if (!user) {
     // eslint-disable-next-line no-console
