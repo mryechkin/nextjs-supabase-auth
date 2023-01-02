@@ -33,7 +33,7 @@ const SignUp = () => {
 
   return (
     <div className="card">
-      <h1 className="w-full text-center">Create Account</h1>
+      <h2 className="w-full text-center">Create Account</h2>
       <Formik
         initialValues={{
           email: '',
@@ -67,14 +67,14 @@ const SignUp = () => {
               <div className="text-red-600">{errors.password}</div>
             ) : null}
 
-            <button className="button" type="submit">
+            <button className="button-inverse w-full" type="submit">
               Submit
             </button>
           </Form>
         )}
       </Formik>
       {errorMsg && <div className="text-red-600">{errorMsg}</div>}
-      {successMsg && <div className="text-teal-600">{successMsg}</div>}
+      {successMsg && <div className="text-black">{successMsg}</div>}
       <button
         className="link w-full"
         type="button"

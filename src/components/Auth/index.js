@@ -1,7 +1,5 @@
 'use client';
 
-import { useEffect } from 'react';
-
 import { useAuth, VIEWS } from 'src/components/AuthProvider';
 
 import ResetPassword from './ResetPassword';
@@ -11,14 +9,6 @@ import UpdatePassword from './UpdatePassword';
 
 const Auth = ({ view: initialView }) => {
   let { view } = useAuth();
-
-  console.log('Auth:initialView', initialView);
-
-  useEffect(() => {
-    console.log('Auth:view changed', view);
-  }, [view]);
-
-  console.log('Auth:view', view);
 
   if (initialView) {
     view = initialView;

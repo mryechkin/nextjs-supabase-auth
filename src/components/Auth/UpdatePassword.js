@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import cn from 'classnames';
 import { Field, Form, Formik } from 'formik';
-import { useRouter } from 'next/navigation';
 import * as Yup from 'yup';
 
 import supabase from 'src/lib/supabase-browser';
@@ -14,7 +13,6 @@ const UpdatePasswordSchema = Yup.object().shape({
 
 const UpdatePassword = () => {
   const [errorMsg, setErrorMsg] = useState(null);
-  const router = useRouter();
 
   async function updatePassword(formData) {
     const { data, error } = await supabase.auth.updateUser({
@@ -24,16 +22,11 @@ const UpdatePassword = () => {
     if (error) {
       setErrorMsg(error.message);
     }
-
-    if (data?.user) {
-      // Must use router here since `redirect` can only be called as part of render, not in event handlers or effects
-      router.push('/home');
-    }
   }
 
   return (
     <div className="card">
-      <h1 className="w-full text-center">Update Password</h1>
+      <h2 className="w-full text-center">Update Password</h2>
       <Formik
         initialValues={{
           password: '',
@@ -53,7 +46,7 @@ const UpdatePassword = () => {
             {errors.password && touched.password ? (
               <div className="text-red-600">{errors.password}</div>
             ) : null}
-            <button className="button" type="submit">
+            <button className="button-inverse w-full" type="submit">
               Update Password
             </button>
           </Form>

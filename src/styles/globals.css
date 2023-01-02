@@ -16,7 +16,7 @@
   }
 
   .card {
-    @apply column min-w-[24rem] items-center bg-white py-8 px-4 shadow sm:rounded-2xl sm:px-10;
+    @apply column min-w-[20rem] items-center gap-8 rounded-2xl bg-white py-8 px-4 shadow-md sm:min-w-[24rem] sm:px-10;
   }
 
   .column {

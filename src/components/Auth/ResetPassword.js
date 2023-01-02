@@ -19,7 +19,7 @@ const ResetPassword = () => {
 
   async function resetPassword(formData) {
     const { error } = await supabase.auth.resetPasswordForEmail(formData?.email, {
-      redirectTo: `${process.env.NEXT_PUBLIC_SUPABASE_BASE_URL}/update-password`,
+      redirectTo: `${process.env.NEXT_PUBLIC_SUPABASE_BASE_URL}`,
     });
 
     if (error) {
@@ -31,7 +31,7 @@ const ResetPassword = () => {
 
   return (
     <div className="card">
-      <h1 className="w-full text-center">Forgot Password</h1>
+      <h2 className="w-full text-center">Forgot Password</h2>
       <Formik
         initialValues={{
           email: '',
@@ -52,14 +52,14 @@ const ResetPassword = () => {
             {errors.email && touched.email ? (
               <div className="text-red-600">{errors.email}</div>
             ) : null}
-            <button className="button" type="submit">
-              Send Password Reset Instructions
+            <button className="button-inverse w-full" type="submit">
+              Send Instructions
             </button>
           </Form>
         )}
       </Formik>
       {errorMsg && <div className="text-center text-red-600">{errorMsg}</div>}
-      {successMsg && <div className="text-center text-teal-600">{successMsg}</div>}
+      {successMsg && <div className="text-center text-black">{successMsg}</div>}
       <button className="link" type="button" onClick={() => setView(VIEWS.SIGN_IN)}>
         Remember your password? Sign In.
       </button>

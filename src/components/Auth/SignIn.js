@@ -30,7 +30,7 @@ const SignIn = () => {
 
   return (
     <div className="card">
-      <h1 className="w-full text-center">Sign In</h1>
+      <h2 className="w-full text-center">Sign In</h2>
       <Formik
         initialValues={{
           email: '',
@@ -72,7 +72,7 @@ const SignIn = () => {
               Forgot your password?
             </button>
 
-            <button className="button w-full" type="submit">
+            <button className="button-inverse w-full" type="submit">
               Submit
             </button>
           </Form>
