@@ -11,11 +11,11 @@
     "lint:fix": "eslint --ignore-path .gitignore --fix ."
   },
   "dependencies": {
-    "@supabase/auth-helpers-nextjs": "^0.5.2",
-    "@supabase/supabase-js": "^2.2.3",
+    "@supabase/auth-helpers-nextjs": "^0.5.4",
+    "@supabase/supabase-js": "^2.8.0",
     "classnames": "^2.3.2",
     "formik": "^2.2.9",
-    "next": "^13.1.1",
+    "next": "^13.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "yup": "^0.32.11"
