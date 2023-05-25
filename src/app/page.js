@@ -20,7 +20,7 @@ export default function Home() {
     return (
       <div className="card">
         <h2>Welcome!</h2>
-        <code className="highlight">{user.role}</code>
+        <code className="highlight">{user}</code>
         <Link className="button" href="/profile">
           Go to Profile
         </Link>
