@@ -1,19 +1,25 @@
-import Link from 'next/link';
 import ADMINS from '../../../constants/admins'
 import { redirect } from 'next/navigation';
-import { addLeadingZeros } from '@/lib/utils';
-
-import SignOut from 'src/components/SignOut';
+import { addLeadingZeros, formatTimestamp } from '@/lib/utils';
 import createClient from 'src/lib/supabase-server';
+import NextEntry from '@/components/NextEntry';
+import PrevEntry from '@/components/PrevEntry';
+import RefData from '@/components/RefData';
+import RESOURCE_URL from 'src/constants/resourcesUrl';
+
 
 export default async function Entry(props) {
-  const resource_url = 'https://qojysegeddztsxdmhjfb.supabase.co/storage/v1/object/public/khajistan-digital-archive/'
-  console.log('propz', props.params.id);
   let databaseValue = addLeadingZeros(props.params.id);
-  console.log('db val', databaseValue);
   const supabase = createClient();
-  // const router = useRouter();
-  // console.log('ROUTER', router)
+
+  let string = '';
+  let resource = '';
+
+  let ocr;
+  let translation;
+  let webMatches;
+  let labels;
+  let description;
 
   const {
     data: { user },
@@ -31,62 +37,68 @@ export default async function Entry(props) {
     .eq('id', databaseValue)
     .limit(1)
 
-  let string = '';
-  let resource = '';
-
   if (error) {
     string = 'error: ' + JSON.stringify(error)
+    return (<div>entry not found</div>)
   } else if (data.length === 0) {
-    string = 'entry not found'
+    string = 'entry not found';
+    return (<div>
+      <PrevEntry entryId={props.params.id} />
+      <NextEntry entryId={props.params.id} />
+      entry not found
+    </div>)
   } else {
     string = JSON.stringify(data, null, 4);
     resource = data[0].resource_endpoint;
   }
 
+  const parseData = (dataObject) => {
+    if (dataObject[0].labels_generated) {
+      labels = dataObject[0].labels_generated
+      console.log('LABEL ' + labels)
+    }
+    if (dataObject[0].ocr_generated) {
+      ocr = dataObject[0].ocr_generated.text
+      console.log('OCR ' + ocr)
+    }
+    if (dataObject[0].description_generated) {
+      description = dataObject[0].description_generated.description
+      console.log('DESC ' + description)
+    }
+    if (dataObject[0].translation_generated) {
+      translation = dataObject[0].translation_generated.text
+      console.log('TRANS ' + translation)
+    }
+    if (dataObject[0].web_matches_generated) {
+      webMatches = dataObject[0].web_matches_generated
+      console.log('WEB ' + webMatches)
+    }
+  }
+
+  if (data.length !== 0) parseData(data);
+
   let media_tag;
 
   if (data[0]?.resource_type === 'video') {
-    media_tag = <div><video controls><source src={resource_url + resource}></source></video></div>
+    media_tag = <div><video controls><source src={RESOURCE_URL + resource}></source></video></div>
   } else if (data[0]?.resource_type === 'image') {
-    media_tag = <div><img src={resource_url + resource} width="500px"></img></div>
-  } 
-
-  
-  
-
-  // const supabase = createClient();
-
-  // const {
-  //   data: { user },
-  // } = await supabase.auth.getUser();
-
-  // if (!user) {
-  //   redirect('/');
-  // }
+    media_tag = <div><img src={RESOURCE_URL + resource} width="500px"></img></div>
+  }
 
   return (
-    // <div className="card">
-    //   <h2>User Profile</h2>
-    //   <code className="highlight">{user.email}</code>
-    //   <div className="heading">Last Signed In:</div>
-    //   <code className="highlight">{new Date(user.last_sign_in_at).toUTCString()}</code>
-    //   <Link className="button" href="/">
-    //     Go Home
-    //   </Link>
-    //   <SignOut />
-    // </div>
     <div>
-    <div>{string}</div>
-    <div>{resource_url + resource}</div>
-    <div>{media_tag}</div>
+      <PrevEntry entryId={props.params.id} />
+      <NextEntry entryId={props.params.id} />
+      <div className='pt-8'>{data[0]?.description_generated?.description ? data[0].description_generated.description : 'Entry ' + data[0].id}</div>
+      <div className='pt-8'>{formatTimestamp(data[0].date_time_original)}</div>
+      <div className='grid grid-cols-3 pt-10'>
+        <div className="m-10 col-span-1">{media_tag}</div>
+        {/* <div>{string}</div> */}
+        {labels && <RefData dataType="labels_generated" data={labels} />}
+        {ocr && <RefData dataType="ocr_generated" data={ocr} />}
+        {webMatches && <RefData dataType="web_matches_generated" data={webMatches} />}
+        {translation && <RefData dataType="translation_generated" data={translation} />}
+      </div>
     </div>
-
   );
 }
-
-
-// export async function getServerSideProps(context) {
-//   const param = context.query
-//   // No-op since getStaticPaths needs getStaticProps to be called.
-//   return { props: param }
-// }

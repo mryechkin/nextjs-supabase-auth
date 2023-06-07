@@ -19,11 +19,25 @@ export default async function RootLayout({ children }) {
   return (
       //[NOTE] this is where logo/header can go - root layout on every page
     <html lang="en">
-      <body>
-        <div className="flex min-h-screen flex-col py-2">
-          <main className="flex w-full flex-1 shrink-0 flex-col  px-8 text-center sm:px-20">
-            <h1 className="mb-12 text-5xl font-bold sm:text-6xl">
+      <body className='bg-yellow-200'>
+        <div className="flex min-h-screen">
+          <main className="flex w-full flex-1 shrink-0 flex-col text-center">
+            
+            <h1 className="grid grid-cols-3 mb-12 text-m sm:text-2xl py-2.5 border-black border-b-2 bg-yellow-200">
+              <div className='text-left ml-2'>
+              hello dear
+              </div>
+
+              <a className='font-bold' href='/'>
               Khajistan Archive
+              </a>
+
+
+
+              <a className='text-right mr-2' href='/profile'>
+              Profile
+              </a>
+              
             </h1>
             <AuthProvider accessToken={accessToken}>{children}</AuthProvider>
           </main>
