@@ -1,4 +1,4 @@
-import ADMINS from '../../../constants/admins'
+import ADMINS from '../../../constants/admins';
 import { redirect } from 'next/navigation';
 import { addLeadingZeros, formatTimestamp } from '@/lib/utils';
 import createClient from 'src/lib/supabase-server';
@@ -6,7 +6,6 @@ import NextEntry from '@/components/NextEntry';
 import PrevEntry from '@/components/PrevEntry';
 import RefData from '@/components/RefData';
 import RESOURCE_URL from 'src/constants/resourcesUrl';
-
 
 export default async function Entry(props) {
   let databaseValue = addLeadingZeros(props.params.id);
@@ -28,25 +27,27 @@ export default async function Entry(props) {
   if (!(user && ADMINS.includes(user.email))) {
     redirect('/');
   } else if (user && ADMINS.includes(user.email)) {
-    console.log('user is admin: ', user.email)
+    console.log('user is admin: ', user.email);
   }
 
   const { data, error } = await supabase
     .from('digital_archive')
     .select()
     .eq('id', databaseValue)
-    .limit(1)
+    .limit(1);
 
   if (error) {
-    string = 'error: ' + JSON.stringify(error)
-    return (<div>entry not found</div>)
+    string = 'error: ' + JSON.stringify(error);
+    return <div>entry not found</div>;
   } else if (data.length === 0) {
     string = 'entry not found';
-    return (<div>
-      <PrevEntry entryId={props.params.id} />
-      <NextEntry entryId={props.params.id} />
-      entry not found
-    </div>)
+    return (
+      <div>
+        <PrevEntry entryId={props.params.id} />
+        <NextEntry entryId={props.params.id} />
+        entry not found
+      </div>
+    );
   } else {
     string = JSON.stringify(data, null, 4);
     resource = data[0].resource_endpoint;
@@ -54,45 +55,59 @@ export default async function Entry(props) {
 
   const parseData = (dataObject) => {
     if (dataObject[0].labels_generated) {
-      labels = dataObject[0].labels_generated
-      console.log('LABEL ' + labels)
+      labels = dataObject[0].labels_generated;
+      console.log('LABEL ' + labels);
     }
     if (dataObject[0].ocr_generated) {
-      ocr = dataObject[0].ocr_generated.text
-      console.log('OCR ' + ocr)
+      ocr = dataObject[0].ocr_generated.text;
+      console.log('OCR ' + ocr);
     }
     if (dataObject[0].description_generated) {
-      description = dataObject[0].description_generated.description
-      console.log('DESC ' + description)
+      description = dataObject[0].description_generated.description;
+      console.log('DESC ' + description);
     }
     if (dataObject[0].translation_generated) {
-      translation = dataObject[0].translation_generated.text
-      console.log('TRANS ' + translation)
+      translation = dataObject[0].translation_generated.text;
+      console.log('TRANS ' + translation);
     }
     if (dataObject[0].web_matches_generated) {
-      webMatches = dataObject[0].web_matches_generated
-      console.log('WEB ' + webMatches)
+      webMatches = dataObject[0].web_matches_generated;
+      console.log('WEB ' + webMatches);
     }
-  }
+  };
 
   if (data.length !== 0) parseData(data);
 
   let media_tag;
 
   if (data[0]?.resource_type === 'video') {
-    media_tag = <div><video controls><source src={RESOURCE_URL + resource}></source></video></div>
+    media_tag = (
+      <div>
+        <video controls>
+          <source src={RESOURCE_URL + resource}></source>
+        </video>
+      </div>
+    );
   } else if (data[0]?.resource_type === 'image') {
-    media_tag = <div><img src={RESOURCE_URL + resource} width="500px"></img></div>
+    media_tag = (
+      <div>
+        <img src={RESOURCE_URL + resource} width="500px"></img>
+      </div>
+    );
   }
 
   return (
     <div>
       <PrevEntry entryId={props.params.id} />
       <NextEntry entryId={props.params.id} />
-      <div className='pt-8'>{data[0]?.description_generated?.description ? data[0].description_generated.description : 'Entry ' + data[0].id}</div>
-      <div className='pt-8'>{formatTimestamp(data[0].date_time_original)}</div>
-      <div className='grid grid-cols-3 pt-10'>
-        <div className="m-10 col-span-1">{media_tag}</div>
+      <div className="pt-8">
+        {data[0]?.description_generated?.description
+          ? data[0].description_generated.description
+          : 'Entry ' + data[0].id}
+      </div>
+      <div className="pt-8">{formatTimestamp(data[0].date_time_original)}</div>
+      <div className="grid grid-cols-3 pt-10">
+        <div className="col-span-1 m-10">{media_tag}</div>
         {/* <div>{string}</div> */}
         {labels && <RefData dataType="labels_generated" data={labels} />}
         {ocr && <RefData dataType="ocr_generated" data={ocr} />}

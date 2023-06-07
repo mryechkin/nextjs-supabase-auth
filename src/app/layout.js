@@ -17,27 +17,21 @@ export default async function RootLayout({ children }) {
   const accessToken = session?.access_token || null;
 
   return (
-      //[NOTE] this is where logo/header can go - root layout on every page
+    //[NOTE] this is where logo/header can go - root layout on every page
     <html lang="en">
-      <body className='bg-yellow-200'>
+      <body className="bg-yellow-200">
         <div className="flex min-h-screen">
           <main className="flex w-full flex-1 shrink-0 flex-col text-center">
-            
-            <h1 className="grid grid-cols-3 mb-12 text-m sm:text-2xl py-2.5 border-black border-b-2 bg-yellow-200">
-              <div className='text-left ml-2'>
-              hello dear
-              </div>
+            <h1 className="text-m mb-12 grid grid-cols-3 border-b-2 border-black bg-yellow-200 py-2.5 sm:text-2xl">
+              <div className="ml-2 text-left">hello dear</div>
 
-              <a className='font-bold' href='/'>
-              Khajistan Archive
+              <a className="font-bold" href="/">
+                Khajistan Archive
               </a>
 
-
-
-              <a className='text-right mr-2' href='/profile'>
-              Profile
+              <a className="mr-2 text-right" href="/profile">
+                Profile
               </a>
-              
             </h1>
             <AuthProvider accessToken={accessToken}>{children}</AuthProvider>
           </main>

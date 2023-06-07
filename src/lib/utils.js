@@ -9,18 +9,28 @@ export const addLeadingZeros = (integer) => {
   const str = String(integer);
   const paddedStr = str.padStart(6, '0');
   return paddedStr;
-}
+};
 
 export const formatTimestamp = (timestamp) => {
   const months = [
-    "January", "February", "March", "April", "May", "June", "July", "August",
-    "September", "October", "November", "December"
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
   ];
 
-  const [datePart, timePart] = timestamp.split(" ");
-  const [year, month, day] = datePart.split(":");
-  
+  const [datePart, timePart] = timestamp.split(' ');
+  const [year, month, day] = datePart.split(':');
+
   const formattedDate = `${parseInt(day)} ${months[parseInt(month) - 1]} ${year}`;
-  
+
   return formattedDate;
-}
+};

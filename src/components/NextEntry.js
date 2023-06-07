@@ -1,7 +1,6 @@
 'use client';
 
 export default function NextEntry(props) {
-
   let nextId = Number(props.entryId) + 1;
 
   let nextUrl = '' + Number(nextId);
@@ -15,6 +14,11 @@ export default function NextEntry(props) {
   }
 
   return (
-    <a href={nextUrl} className="border-black hover:bg-sky-500 p-1 m-2 border-2 border-black">NEXT ▶</a>
+    <a
+      href={nextUrl}
+      className="m-2 border-2 border-black border-black p-1 hover:bg-sky-500"
+    >
+      NEXT ▶
+    </a>
   );
 }
