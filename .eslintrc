@@ -4,7 +4,7 @@
     "no-shadow": "warn",
     "no-unused-vars": "warn",
     "jsx-a11y/label-has-associated-control": [
-      "error",
+      "warn",
       {
         "controlComponents": ["Field"],
         "depth": 3
