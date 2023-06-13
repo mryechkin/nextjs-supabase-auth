@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+import React from 'react';
 import DB_LABELS from 'src/constants/db-labels';
 
 export default function RefData(props) {

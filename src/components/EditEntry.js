@@ -1,3 +1,4 @@
+import React from 'react';
 import DB_LABELS from 'src/constants/db-labels';
 
 //need useState for each editable field

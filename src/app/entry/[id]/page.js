@@ -1,11 +1,13 @@
-import ADMINS from '../../../constants/admins';
-import { redirect } from 'next/navigation';
-import { addLeadingZeros, formatTimestamp } from '@/lib/utils';
-import createClient from 'src/lib/supabase-server';
 import NextEntry from '@/components/NextEntry';
 import PrevEntry from '@/components/PrevEntry';
 import RefData from '@/components/RefData';
+import { addLeadingZeros, formatTimestamp } from '@/lib/utils';
+import { redirect } from 'next/navigation';
+import React from 'react';
 import RESOURCE_URL from 'src/constants/resourcesUrl';
+import createClient from 'src/lib/supabase-server';
+
+import ADMINS from '../../../constants/admins';
 
 export default async function Entry(props) {
   let databaseValue = addLeadingZeros(props.params.id);
@@ -108,11 +110,11 @@ export default async function Entry(props) {
       <div className="pt-8">{formatTimestamp(data[0].date_time_original)}</div>
       <div className="grid grid-cols-3 pt-10">
         <div className="col-span-1 m-10">{media_tag}</div>
-        {/* <div>{string}</div> */}
         {labels && <RefData dataType="labels_generated" data={labels} />}
         {ocr && <RefData dataType="ocr_generated" data={ocr} />}
         {webMatches && <RefData dataType="web_matches_generated" data={webMatches} />}
         {translation && <RefData dataType="translation_generated" data={translation} />}
+        <div>{string}</div>
       </div>
     </div>
   );

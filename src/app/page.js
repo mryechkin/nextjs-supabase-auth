@@ -1,6 +1,7 @@
-import SignIn from '@/components/SignIn';
 import SearchResults from '@/components/SearchResults';
+import SignIn from '@/components/SignIn';
 // import SearchResult from '@/components/SearchResult';
+import React from 'react';
 
 export default function Home() {
   return (

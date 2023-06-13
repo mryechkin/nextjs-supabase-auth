@@ -1,17 +1,11 @@
 'use client';
 
+import React from 'react';
+
 export default function PrevEntry(props) {
   let prevId = Number(props.entryId) - 1;
 
   let prevUrl = '' + Number(prevId);
-
-  async function handleSignOut() {
-    const { error } = await signOut();
-
-    if (error) {
-      console.error('ERROR signing out:', error);
-    }
-  }
 
   return (
     <a

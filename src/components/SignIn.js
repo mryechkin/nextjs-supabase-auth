@@ -1,9 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-
+import React from 'react';
 import Auth from 'src/components/Auth';
-import { useAuth, VIEWS } from 'src/components/AuthProvider';
+import { VIEWS, useAuth } from 'src/components/AuthProvider';
+
 //import SearchResults from '@/components/SearchResults';
 
 export default function Home() {

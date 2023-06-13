@@ -1,7 +1,7 @@
+import React from 'react';
 import { AuthProvider } from 'src/components/AuthProvider';
 import createClient from 'src/lib/supabase-server';
-import { Noto } from 'next/font/google';
-
+// import { Noto } from 'next/font/google';
 import 'src/styles/globals.css';
 
 // do not cache this layout

@@ -1,12 +1,12 @@
 'use client';
 
-import { useState } from 'react';
 import cn from 'classnames';
 import { Field, Form, Formik } from 'formik';
-import * as Yup from 'yup';
-
-import { useAuth, VIEWS } from 'src/components/AuthProvider';
+import { useState } from 'react';
+import React from 'react';
+import { VIEWS, useAuth } from 'src/components/AuthProvider';
 import supabase from 'src/lib/supabase-browser';
+import * as Yup from 'yup';
 
 const SignUpSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),

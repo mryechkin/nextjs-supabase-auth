@@ -1,11 +1,11 @@
 'use client';
 
-import { useState } from 'react';
 import cn from 'classnames';
 import { Field, Form, Formik } from 'formik';
-import * as Yup from 'yup';
-
+import { useState } from 'react';
+import React from 'react';
 import supabase from 'src/lib/supabase-browser';
+import * as Yup from 'yup';
 
 const UpdatePasswordSchema = Yup.object().shape({
   password: Yup.string().required('Required'),

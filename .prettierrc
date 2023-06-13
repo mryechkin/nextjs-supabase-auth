@@ -1,4 +1,7 @@
 {
   "printWidth": 90,
-  "singleQuote": true
+  "singleQuote": true,
+  "importOrder": ["^components/(.*)$", "^[./]" ],
+  "importOrderSeparation": true, 
+  "importOrderSortSpecifiers": true
 }

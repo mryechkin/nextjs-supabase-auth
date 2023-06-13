@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-
+import React from 'react';
 import SignOut from 'src/components/SignOut';
 import createClient from 'src/lib/supabase-server';
 
