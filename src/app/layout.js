@@ -1,5 +1,7 @@
-import { AuthProvider } from 'src/components/AuthProvider';
-import createClient from 'src/lib/supabase-server';
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
+
+import AuthProvider from 'src/components/AuthProvider';
 
 import 'src/styles/globals.css';
 
@@ -7,7 +9,7 @@ import 'src/styles/globals.css';
 export const revalidate = 0;
 
 export default async function RootLayout({ children }) {
-  const supabase = createClient();
+  const supabase = createServerComponentClient({ cookies });
 
   const {
     data: { session },
