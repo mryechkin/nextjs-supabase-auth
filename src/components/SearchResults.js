@@ -1,30 +1,33 @@
+import { getSearchPageBounds } from '@/lib/utils';
+import React from 'react';
+import { Suspense } from 'react';
 import createClient from 'src/lib/supabase-server';
+
+import Loading from './Loading';
+import PaginationTest from './PaginationTest';
 import SearchResult from './SearchResult';
-import MoreResultsButton from './MoreResultsButton';
-// import { useState } from 'react';
 
 export default async function SearchResults(props) {
-  // const [resultsCount, setResultsCount] = useState(20);
-
-  let x = 20;
+  let currentPage = props.page ? props.page : 1;
+  const { lowerBound, upperBound } = getSearchPageBounds(currentPage);
 
   let supabase = createClient();
 
   let formatedData;
 
-  const { data, error } = await supabase
+  const { count, data, error } = await supabase
     .from('digital_archive')
-    .select()
+    .select('*', { count: 'exact' })
     .order('id', { ascending: false })
-    .limit(x);
+    .range(lowerBound, upperBound);
 
-  console.log('DATA', data);
+  const pageCount = Math.floor(count / 16);
 
   if (data) {
-    console.log('data', data[0].resource_url);
     formatedData = data.map(
       (entry) => (
         <SearchResult
+          key={entry.id}
           resource_endpoint={entry.resource_endpoint}
           id={entry.id}
           description_generated={entry.description_generated}
@@ -36,15 +39,14 @@ export default async function SearchResults(props) {
     );
   }
 
-  console.log('FORMATED DATA'.formatedData);
-
   return (
-    <div>
-      <div className="h-20px grid grid-cols-4 border-2 border-black p-10">
-        {formatedData}
+    <Suspense fallback={<Loading />}>
+      <div className="border-2 border-black p-15 pb-5">
+        <div className="h-20px grid grid-cols-4">{formatedData}</div>
+        <div className="flex items-center justify-center mt-5">
+          <PaginationTest currentPage={Number(currentPage)} pages={Number(pageCount)} />
+        </div>
       </div>
-      {/* <MoreResultsButton resultsCount={resultsCount} setResultsCount={setResultsCount} /> */}
-      {/* <button onClick={() => {x = x + 20}}>more results</button> */}
-    </div>
+    </Suspense>
   );
 }

@@ -5,7 +5,7 @@ export default function SearchResult(props) {
 
   if (props.resource_type === 'image') {
     return (
-      <div className="">
+      <div className="m-5">
         <a href={link}>
           <img
             width="300px"
@@ -14,7 +14,9 @@ export default function SearchResult(props) {
             href={link}
           />
         </a>
-        <a href={link}>{props.description_generated.description}</a>
+        <a className="" href={link}>
+          {props.description_generated.description}
+        </a>
       </div>
     );
   }

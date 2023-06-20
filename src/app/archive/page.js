@@ -11,7 +11,7 @@ export default async function Home(props) {
   return (
     <div className="card bg-yellow-400 drop-shadow-none">
       {/* <SignIn /> */}
-      Main page !
+      <SearchResults page={props.searchParams.page} tags={props.searchParams.tags} />
     </div>
   );
 }
