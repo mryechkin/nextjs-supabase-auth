@@ -32,7 +32,6 @@ export default async function SearchResults(props) {
           id={entry.id}
           description_generated={entry.description_generated}
           resource_type={entry.resource_type}
-          timestamp={entry.date_time_original}
         />
       )
       // <img width='300px' src={RESOURCE_URL + entry.resource_endpoint}/>
@@ -42,8 +41,8 @@ export default async function SearchResults(props) {
 
   return (
     <Suspense fallback={<Loading />}>
-      <div className="p-15 pb-5">
-        <div className="h-20px grid grid-cols-3 items-end">{formatedData}</div>
+      <div className="border-2 border-black p-15 pb-5">
+        <div className="h-20px grid grid-cols-4">{formatedData}</div>
         <div className="flex items-center justify-center mt-5">
           <PaginationTest currentPage={Number(currentPage)} pages={Number(pageCount)} />
         </div>

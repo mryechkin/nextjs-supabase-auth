@@ -29,7 +29,7 @@ const SignIn = () => {
   }
 
   return (
-    <div className="card bg-yellow-200">
+    <div className="">
       <h2 className="w-full text-center">Sign In</h2>
       <Formik
         initialValues={{
