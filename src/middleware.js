@@ -1,4 +1,4 @@
-import { createMiddlewareSupabaseClient } from '@supabase/auth-helpers-nextjs';
+import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs';
 import { NextResponse } from 'next/server';
 
 /**
@@ -8,16 +8,11 @@ import { NextResponse } from 'next/server';
  */
 export async function middleware(req) {
   const res = NextResponse.next();
-
-  const supabase = createMiddlewareSupabaseClient({ req, res });
-
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-
+  const supabase = createMiddlewareClient({ req, res });
+  await supabase.auth.getSession();
   return res;
 }
 
 export const config = {
-  matcher: ['/profile'],
+  matcher: ['/', '/profile'],
 };

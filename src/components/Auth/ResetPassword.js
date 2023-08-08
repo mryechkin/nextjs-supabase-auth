@@ -1,25 +1,24 @@
 'use client';
 
 import { useState } from 'react';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import cn from 'classnames';
 import { Field, Form, Formik } from 'formik';
+import Link from 'next/link';
 import * as Yup from 'yup';
-
-import { useAuth, VIEWS } from 'src/components/AuthProvider';
-import supabase from 'src/lib/supabase-browser';
 
 const ResetPasswordSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
 });
 
 const ResetPassword = () => {
-  const { setView } = useAuth();
+  const supabase = createClientComponentClient();
   const [errorMsg, setErrorMsg] = useState(null);
   const [successMsg, setSuccessMsg] = useState(null);
 
   async function resetPassword(formData) {
-    const { error } = await supabase.auth.resetPasswordForEmail(formData?.email, {
-      redirectTo: `${process.env.NEXT_PUBLIC_SUPABASE_BASE_URL}`,
+    const { error } = await supabase.auth.resetPasswordForEmail(formData.email, {
+      redirectTo: `${window.location.origin}/auth/update-password`,
     });
 
     if (error) {
@@ -60,9 +59,9 @@ const ResetPassword = () => {
       </Formik>
       {errorMsg && <div className="text-center text-red-600">{errorMsg}</div>}
       {successMsg && <div className="text-center text-black">{successMsg}</div>}
-      <button className="link" type="button" onClick={() => setView(VIEWS.SIGN_IN)}>
+      <Link href="/sign-in" className="link">
         Remember your password? Sign In.
-      </button>
+      </Link>
     </div>
   );
 };

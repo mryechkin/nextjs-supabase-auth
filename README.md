@@ -7,6 +7,9 @@
   <a href="https://www.supabase.io">
     <img src="https://img.shields.io/github/package-json/dependency-version/mryechkin/nextjs-supabase-auth/@supabase/supabase-js?color=%2322c55e&style=for-the-badge" alt="Supabase" />
   </a>
+  <a href="https://www.supabase.io">
+    <img src="https://img.shields.io/github/package-json/dependency-version/mryechkin/nextjs-supabase-auth/@supabase/auth-helpers-nextjs?color=%2322c55e&style=for-the-badge" alt="Supabase" />
+  </a>
   <a href="https://github.com/mryechkin/nextjs-supabase-auth/blob/main/LICENSE">
     <img src="https://img.shields.io/github/license/mryechkin/nextjs-supabase-auth?style=for-the-badge" alt="License" />
   </a>
@@ -18,11 +21,12 @@
 
 ## Overview
 
-Sample project showing how to add authentication to [Next.js](https://nextjs.org/) 13+ using [Supabase](https://www.supabase.io/) [Auth](https://supabase.com/docs/guides/auth) and the new [`app` directory](https://nextjs.org/docs/app/building-your-application/routing#the-app-directory).
+Sample project showing how to add authentication to [Next.js](https://nextjs.org/) 13+ using [Supabase](https://www.supabase.io/) [Auth](https://supabase.com/docs/guides/auth) and the [`app`](https://nextjs.org/docs/app) router with React Server Components.
 
-> **NOTE:** `app` directory is stable as of Next 13.4
+This project is a supplement to [this guide](https://misha.wtf/blog/supabase-auth-next-13-pkce). See the link for a detailed tutorial.
 
-This project is a supplement to [this guide](https://www.misha.wtf/blog/supabase-auth-next-13). See the link for a detailed tutorial.
+> **Note**
+> The `main` branch is using the latest version of [Auth Helpers](https://supabase.com/docs/guides/auth/auth-helpers/nextjs) (`0.7.x`) with the [Proof Key for Code Exchange]() (PKCE) flow. If you are looking for the older version (using Auth Helpers `0.6.1`) see the [`v2`](https://github.com/mryechkin/nextjs-supabase-auth/tree/v2) branch.
 
 ## Author
 
