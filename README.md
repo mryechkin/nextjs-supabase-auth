@@ -16,7 +16,7 @@
 </p>
 
 <p align="center">
-  <img src="https://www.misha.wtf/_next/image?url=%2Fblog%2Fsupabase-auth-next-13%2Fcover.png&w=640&q=100" alt="Banner image" />
+  <img src="https://www.misha.wtf/_next/image?url=%2Fblog%2Fsupabase-auth-next-13-pkce%2Fcover.png&w=640&q=100" alt="Banner image" />
 </p>
 
 ## Overview
@@ -26,13 +26,11 @@ Sample project showing how to add authentication to [Next.js](https://nextjs.org
 This project is a supplement to [this guide](https://misha.wtf/blog/supabase-auth-next-13-pkce). See the link for a detailed tutorial.
 
 > **Note**
-> The `main` branch is using the latest version of [Auth Helpers](https://supabase.com/docs/guides/auth/auth-helpers/nextjs) (`0.7.x`) with the [Proof Key for Code Exchange]() (PKCE) flow. If you are looking for the older version (using Auth Helpers `0.6.1`) see the [`v2`](https://github.com/mryechkin/nextjs-supabase-auth/tree/v2) branch.
+> The `main` branch is using the latest version of [Auth Helpers](https://supabase.com/docs/guides/auth/auth-helpers/nextjs) with the [Proof Key for Code Exchange]() (PKCE) flow. If you are looking for the older version (using Auth Helpers `0.6.1` or earlier) see the [`v2`](https://github.com/mryechkin/nextjs-supabase-auth/tree/v2) branch.
 
 ## Author
 
 [Mykhaylo Ryechkin](https://github.com/mryechkin)
-
-<a href="https://www.buymeacoffee.com/mryechkin" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
 
 ## License
 
