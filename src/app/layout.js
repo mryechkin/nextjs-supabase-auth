@@ -26,9 +26,9 @@ export default async function RootLayout({ children }) {
               Next.js with <span className="font-black text-green-400">Supabase</span>
             </h1>
             <div className="flex flex-1 flex-col justify-center">
-                <div className="card">
-                  <AuthProvider accessToken={accessToken}>{children}</AuthProvider>
-                </div>
+              <div className="card">
+                <AuthProvider accessToken={accessToken}>{children}</AuthProvider>
+              </div>
             </div>
           </main>
         </div>
