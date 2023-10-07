@@ -29,7 +29,7 @@ const ResetPassword = () => {
   }
 
   return (
-    <div className="card">
+    <div>
       <h2 className="w-full text-center">Forgot Password</h2>
       <Formik
         initialValues={{

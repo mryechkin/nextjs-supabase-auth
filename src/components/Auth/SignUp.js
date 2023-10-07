@@ -32,7 +32,7 @@ const SignUp = () => {
   }
 
   return (
-    <div className="card">
+    <div>
       <h2 className="w-full text-center">Create Account</h2>
       <Formik
         initialValues={{
